@@ -1,0 +1,322 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم 
+
+Serrtifikat : https://academy.dqlab.id/certificate/pdf/DQLABDTWR1KDQTOO
+___________________________________________________________________________________________________________________________________________
+-----NA dan default type (https://academy.dqlab.id/main/livecode/12/44/243?pr=0) -----
+
+#Ketik nilai NA
+NA
+
+#Tampilkan type dari NA dengan function typeof
+typeof(NA)
+
+___________________________________________________________________________________________________________________________________________
+-----Menggunakan function is.na (https://academy.dqlab.id/main/livecode/12/44/245?pr=0) -----
+
+#Buat variable x yang diisi dengan nilai NA
+x <- NA
+
+#Pengecekan variable x dengan nilai NA menggunakan operator ==
+x == NA
+
+#Pengecekan variable x dengan nilai NA menggunakan function is.na
+is.na(x)
+
+___________________________________________________________________________________________________________________________________________
+-----Variasi NA dan is.na (https://academy.dqlab.id/main/livecode/12/44/248?pr=0) -----
+
+typeof(NA_integer_)
+typeof(NA_real_)
+typeof(NA_complex_)
+typeof(NA_character_)
+is.na(NA_integer_)
+is.na(NA_real_)
+is.na(NA_complex_)
+is.na(NA_character_)
+
+___________________________________________________________________________________________________________________________________________
+-----Coercion pada Vector yang mengandung NA (https://academy.dqlab.id/main/livecode/12/44/252?pr=0) -----
+
+#Membuat vector bernama isi.vector dengan isi bilangan, dimana salah satunya memiliki missing value
+isi.vector <- c(1,2,3,NA,3,1)
+
+#Mengecek keseluruhan tipe data dengan perulangan lapply dan typeof
+lapply(isi.vector, typeof)
+
+#Menggunakan is.na untuk mengecek keberadaan missing value dari tiap elemen pada vector 
+is.na(isi.vector)
+
+___________________________________________________________________________________________________________________________________________
+-----NULL dan Vector (https://academy.dqlab.id/main/livecode/12/44/254?pr=0) -----
+
+#Membuat vector dengan 7 elemen termasuk NA dan NULL
+isi.vector <- c(1,2,3,NA,5,NULL,7)
+
+#Menghitung jumlah elemen dari isi.vector
+length(isi.vector)
+
+___________________________________________________________________________________________________________________________________________
+-----NULL dan List (https://academy.dqlab.id/main/livecode/12/44/259?pr=0)-----
+
+#Membuat list dengan 3 elemen termasuk NA dan NULL 
+ isi.list <- list(1,NULL,3,NA,5)
+
+#Menghitung jumlah elemen dari isi.list
+length(isi.list)
+
+___________________________________________________________________________________________________________________________________________
+-----Inf untuk mewakili Infinite Number (https://academy.dqlab.id/main/livecode/12/44/261?pr=0)-----
+
+#Hitung kalkulasi 5 dibagi dengan 0
+5/0
+
+#Hitung kalkulasi -120 dibagi dengan 0
+-120/0
+
+___________________________________________________________________________________________________________________________________________
+-----NaN (Not a Number) (https://academy.dqlab.id/main/livecode/12/44/264?pr=0)-----
+
+#Hitung kalkulasi 0 dibagi dengan 0
+0/0
+
+___________________________________________________________________________________________________________________________________________
+-----NaN dari hasil function log() (https://academy.dqlab.id/main/livecode/12/44/266?pr=0)-----
+
+#Hitung logaritma dari angka -1000
+log(-1000)
+
+___________________________________________________________________________________________________________________________________________
+-----Fungsi is.nan (https://academy.dqlab.id/main/livecode/12/44/267?pr=0)-----
+
+#Buat variable contoh.nan
+contoh.nan <- 0/0
+
+#Periksa dengan function is.nan
+is.nan(contoh.nan)
+
+___________________________________________________________________________________________________________________________________________
+-----NaN dan is.na versus NA dan is.nan (https://academy.dqlab.id/main/livecode/12/44/268?pr=0)-----
+
+#Masukkan code di bawah ini sesuai permintaan soal
+is.na(NaN)
+is.nan(NA)
+
+___________________________________________________________________________________________________________________________________________
+-----Menghitung Jumlah Missing Values dari satu Vector (https://academy.dqlab.id/main/livecode/12/44/270?pr=0)-----
+
+#Masukkan code di bawah ini sesuai permintaan soal
+isi.vector <- c(1,2,NA,4,5,NaN,6)
+sum(is.na(isi.vector)==TRUE)
+
+___________________________________________________________________________________________________________________________________________
+-----Membuat Factor di R (https://academy.dqlab.id/main/livecode/12/45/287?pr=)-----
+
+#Buatlah factor dengan isi nilai teks "Jan", "Feb", dan "Mar"
+factor(c("Jan","Feb","Mar"))
+
+___________________________________________________________________________________________________________________________________________
+-----Atribut levels dan class pada Factor (https://academy.dqlab.id/main/livecode/12/45/289?pr=)-----
+
+#Variable factor bernama faktor.bulan dengan nilai teks "Jan", "Feb", dan "Mar"
+faktor.bulan <- factor(c("Jan","Feb","Mar"))
+attributes(faktor.bulan)
+
+___________________________________________________________________________________________________________________________________________
+-----Function levels dan class pada Factor (https://academy.dqlab.id/main/livecode/12/45/291?pr=)-----
+
+#Variable factor bernama faktor.bulan dengan nilai teks "Jan", "Feb", dan "Mar"
+faktor.bulan <- factor(c("Jan","Feb","Mar"))
+levels(faktor.bulan)
+class(faktor.bulan)
+
+___________________________________________________________________________________________________________________________________________
+-----Perulangan Nilai pada Factor (https://academy.dqlab.id/main/livecode/12/45/293?pr=)-----
+
+#Buatlah factor dengan teks "Jan", "Feb", "Mar","Jan","Mar", dan "Jan"
+factor(c("Jan","Feb","Mar","Jan","Mar","Jan"))
+
+___________________________________________________________________________________________________________________________________________
+-----Penggunaan as.integer pada Factor (https://academy.dqlab.id/main/livecode/12/45/297?pr=)-----
+
+#Buatlah factor dengan teks "Jan", "Feb", "Mar","Jan","Mar", dan "Jan"
+factor.bulan <- factor(c("Jan","Feb","Mar","Jan","Mar","Jan"))
+as.integer(factor.bulan)
+
+___________________________________________________________________________________________________________________________________________
+-----Mengganti "Jan" menjadi "Januari" (https://academy.dqlab.id/main/livecode/12/45/299?pr=)-----
+
+#Buatlah factor dengan teks "Jan", "Feb", "Mar","Jan","Mar", dan "Jan"
+factor.bulan <- factor(c("Jan","Feb","Mar","Jan","Mar","Jan"))
+#Mengganti levels 
+levels(factor.bulan)[2] <- "Januari"
+levels(factor.bulan)[3] <- "Maret"
+factor.bulan
+
+___________________________________________________________________________________________________________________________________________
+-----Angka sebagai Kategori (https://academy.dqlab.id/main/livecode/12/45/301?pr=)-----
+
+#Buatlah factor bernama factor.umur dengan isi c(12, 35, 24, 12, 35, 37)
+factor.umur <- factor(c(12,35,24,12,35,37))
+#Tampilkan variable factor.umur 
+factor.umur
+
+___________________________________________________________________________________________________________________________________________
+-----NA, NaN, NULL pada saat pembentukan Factor (https://academy.dqlab.id/main/livecode/12/45/302?pr=)-----
+
+#Buatlah variable factor.lokasi dengan isi berupa vector c("Bandung", "Jakarta", NA, "Jakarta", NaN, "Medan", NULL, NULL, "Bandung") 
+factor.lokasi <- factor(c("Bandung","Jakarta", NA,"Jakarta",NaN,"Medan",NULL,NULL,"Bandung"))
+#Tampilkan factor.lokasi
+factor.lokasi
+
+___________________________________________________________________________________________________________________________________________
+-----Menghitung panjang Factor dengan length (https://academy.dqlab.id/main/livecode/12/45/303?pr=)-----
+
+#Buatlah variable factor.lokasi dengan isi berupa vector c("Bandung", "Jakarta", NA, "Jakarta", NaN, "Medan", NULL, NULL, "Bandung") 
+factor.lokasi <- factor(c("Bandung", "Jakarta", NA, "Jakarta", NaN, "Medan", NULL, NULL, "Bandung"))
+#Tampilkan panjang dari variable factor.lokasi
+length(factor.lokasi)
+
+___________________________________________________________________________________________________________________________________________
+-----Menyusun levels dari awal (https://academy.dqlab.id/main/livecode/12/45/304?pr=)-----
+
+#Variable factor dengan isi vector c("Jan","Feb","Mar","Jan","Mar") 
+factor(c("Jan","Feb","Mar","Jan","Mar"), levels = c("Jan","Feb","Mar"))
+
+___________________________________________________________________________________________________________________________________________
+-----Membaca Dataset CSV (https://academy.dqlab.id/main/livecode/12/46/310?pr=)-----
+
+#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki
+
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv",sep=",")
+
+penduduk.dki
+
+___________________________________________________________________________________________________________________________________________
+-----Profile Dataset dengan Function str (https://academy.dqlab.id/main/livecode/12/46/311?pr=)-----
+
+#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+str(penduduk.dki)
+
+___________________________________________________________________________________________________________________________________________
+-----Profile Dataset dengan Function summary (https://academy.dqlab.id/main/livecode/12/46/312?pr=)-----
+
+#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+summary(penduduk.dki)
+
+___________________________________________________________________________________________________________________________________________
+-----Menggunakan argumen check.names = FALSE (https://academy.dqlab.id/main/livecode/12/46/315?pr=)-----
+
+#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",", check.names = FALSE)
+str(penduduk.dki)
+
+___________________________________________________________________________________________________________________________________________
+-----Membaca Tab Separated Value (TSV) (https://academy.dqlab.id/main/livecode/12/46/316?pr=)-----
+
+#Membaca dataset dengan read.csv dan dimasukkan ke variable penduduk.dki
+
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.tsv",sep="\t")
+penduduk.dki
+
+___________________________________________________________________________________________________________________________________________
+-----Membaca Dataset File Excel dengan read.xlsx (https://academy.dqlab.id/main/livecode/12/46/318?pr=)-----
+
+library(openxlsx)
+#Membaca dataset dengan read.xlsx dan dimasukkan ke variable penduduk.dki
+penduduk.dki.xlsx <- read.xlsx(xlsxFile="https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx")
+str(penduduk.dki.xlsx)
+
+___________________________________________________________________________________________________________________________________________
+-----Function names (https://academy.dqlab.id/main/livecode/12/47/324?pr=)-----
+
+#Membaca dataset csv
+penduduk.dki.csv <-read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+#Menggunakan names untuk variable penduduk.dki.csv
+names(penduduk.dki.csv)
+
+___________________________________________________________________________________________________________________________________________
+-----Merubah Satu Nama Kolom (https://academy.dqlab.id/main/livecode/12/47/325?pr=)-----
+
+#Membaca dataset csv
+penduduk.dki.csv <-read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+names(penduduk.dki.csv)[1] <- "PERIODE"
+names(penduduk.dki.csv)[2] <- "PROPINSI"
+names(penduduk.dki.csv)
+
+___________________________________________________________________________________________________________________________________________
+-----Merubah Sejumlah Nama Kolom (https://academy.dqlab.id/main/livecode/12/47/327?pr=)-----
+
+#Membaca dataset csv
+penduduk.dki.csv <-read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+names(penduduk.dki.csv)[c(1:2)] <-c("PERIODE","PROPINSI")
+names(penduduk.dki.csv)
+
+___________________________________________________________________________________________________________________________________________
+-----Membuang Kolom dengan Bantuan Operator %in% (https://academy.dqlab.id/main/livecode/12/47/328?pr=)-----
+
+#Membaca dataset csv
+penduduk.dki.csv <-read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+#Membuang kolom X, X.1, X.2 s/d X.11
+penduduk.dki.csv <- penduduk.dki.csv[,!names(penduduk.dki.csv) %in% c("X","X.1","X.2","X.3","X.4","X.5","X.6","X.7","X.8", "X.9","X.10","X.11")]
+names(penduduk.dki.csv)
+
+___________________________________________________________________________________________________________________________________________
+-----Merubah Tipe Kolom menjadi Factor (https://academy.dqlab.id/main/livecode/12/47/330?pr=)-----
+
+library(openxlsx)
+#Membaca dataset dengan read.xlsx dan dimasukkan ke variable penduduk.dki
+penduduk.dki.xlsx <- read.xlsx(xlsxFile="https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx")
+penduduk.dki.xlsx$NAMA.PROVINSI <- as.factor(penduduk.dki.xlsx$NAMA.PROVINSI)
+str(penduduk.dki.xlsx)
+
+___________________________________________________________________________________________________________________________________________
+-----Mengambil Kolom Laki.Laki / Perempuan dengan grep (https://academy.dqlab.id/main/livecode/12/47/341?pr=)-----
+
+library(openxlsx)
+penduduk.dki.xlsx <- read.xlsx(xlsxFile="https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx")
+#Tampilkan nama-nama kolom yang mengandung kata "perempuan".
+pola_nama_perempuan <- grep(pattern="perempuan", x = names(penduduk.dki.xlsx), ignore.case=TRUE)
+names(penduduk.dki.xlsx[pola_nama_perempuan])
+
+#Tampilkan nama-nama kolom yang mengandung kata "laki-laki"
+pola_nama_laki_laki <- grep(pattern="laki-laki", x= names(penduduk.dki.xlsx), ignore.case=TRUE )
+names(penduduk.dki.xlsx[pola_nama_laki_laki])
+
+___________________________________________________________________________________________________________________________________________
+-----Menambahkan kolom Penjumlahan (https://academy.dqlab.id/main/livecode/12/47/331?pr=)-----
+
+library(openxlsx)
+penduduk.dki.xlsx <- read.xlsx(xlsxFile="https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx")
+#Tampilkan nama-nama kolom yang mengandung kata "perempuan".
+pola_nama_perempuan <- grep(pattern="perempuan", x = names(penduduk.dki.xlsx), ignore.case=TRUE)
+penduduk.dki.xlsx$PEREMPUAN35TAHUNKEATAS  <- rowSums(penduduk.dki.xlsx[pola_nama_perempuan])
+
+___________________________________________________________________________________________________________________________________________
+-----Normalisasi Data dari Kolom ke Baris (https://academy.dqlab.id/main/livecode/12/47/332?pr=)-----
+
+library(openxlsx)
+library(reshape2)
+penduduk.dki.xlsx <- read.xlsx(xlsxFile="https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx")
+#Transformasi kolom dataset penduduk.dki.xlsx, disimpan ke variable penduduk.dki.transform
+penduduk.dki.transform <- melt(data=penduduk.dki.xlsx, id.vars=c("NAMA.KECAMATAN","NAMA.KELURAHAN"),measure.vars = c("35-39.Laki-Laki","35-39.Perempuan"), Variable.name = "DEMOGRAFIK", value.name="JUMLAH")
+#Menampilkan variable penduduk.dki.transform
+penduduk.dki.transform
+
+___________________________________________________________________________________________________________________________________________
+-----Split Fields (https://academy.dqlab.id/main/livecode/12/47/334?pr=)-----
+
+library(openxlsx)
+library(reshape2)
+penduduk.dki.xlsx <- read.xlsx(xlsxFile="https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.xlsx")
+penduduk.dki.transform <- melt(data=penduduk.dki.xlsx, id.vars=c( "NAMA.KECAMATAN", "NAMA.KELURAHAN"), measure.vars = c("35-39.Laki-Laki", "35-39.Perempuan"), variable.name = "DEMOGRAFIK", value.name="JUMLAH")
+#Memecah isi kolom DEMOGRAFIK menjadi "RENTANG.UMUR" dan "JENIS.KELAMIN"
+penduduk.dki.transform[c("RENTANG.UMUR","JENIS.KELAMIN")] <- colsplit(penduduk.dki.transform$DEMOGRAFIK,"\\.",c("RENTANG.UMUR","JENIS.KELAMIN"))
+penduduk.dki.transform$DEMOGRAFIK <- NULL
+penduduk.dki.transform
+
+___________________________________________________________________________________________________________________________________________
+اَلْحَمْدُ للَّهِ رَبِّ الْعالَمِينَ
+
+
