@@ -1,0 +1,273 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+======================================== Python Fundamental for Data Science =================================================
+______________________________________________________________________________________________________________________________
+
+-----Code Hello World(https://academy.dqlab.id/main/livecode/45/110/524?pr=0)-----
+
+print (10*2+5)
+print ("Academy DQLab")
+
+______________________________________________________________________________________________________________________________
+
+-----Comment Pada Python(https://academy.dqlab.id/main/livecode/45/110/525?pr=0)-----
+
+print(10*2+5) #fungsi matematika untuk menghitung (10*2+5)
+print("Academy DQLab") #fungsi mencetak kalimat Academy DQLab
+______________________________________________________________________________________________________________________________
+
+-----Printing Data Type(https://academy.dqlab.id/main/livecode/45/110/527?pr=0)-----
+
+var_string="Belajar Python DQLAB"
+var_int=10
+var_float=3.14
+var_tuple=("satu","dua","tiga")
+var_dict={"nama":"Ali", 'umur':20}
+
+
+print(type(var_string))
+print(type(var_int))
+print(type(var_float))
+print(type(var_list))
+print(type(var_tuple))
+print(type(var_dict))
+______________________________________________________________________________________________________________________________
+
+-----IF Statement(https://academy.dqlab.id/main/livecode/45/111/529?pr=)-----
+
+i = 7 #inisialisasi variable i yang memiliki nilai 10
+
+if(i==10) : #pengecekan nilai i apakah sama dengan 10
+	print("ini adalah angka 10") #jika TRUE maka akan mencetak kalimat ini
+______________________________________________________________________________________________________________________________
+
+-----IF … ELSE …(https://academy.dqlab.id/main/livecode/45/111/530?pr=)-----
+
+i = 5 #inisialisasi variable i yang memiliki nilai 10
+
+if(i==10): #pengecekan nilai i apakah sama dengan 10
+	print("ini adalah angka 10") #jika TRUE maka akan mencetak kalimat ini 
+	else:
+		print("bukan angka 10") #jika FALSE akan mencetak kalimat ini
+______________________________________________________________________________________________________________________________
+
+-----IF … ELIF … ELSE ….(https://academy.dqlab.id/main/livecode/45/111/531?pr=)-----
+
+i=3
+
+if(i==5):
+	print("ini adalah angka 5")
+elif(i>5):
+	print("lebih besar dari 5")
+else:
+	print("lebih kecil dari 5")
+______________________________________________________________________________________________________________________________
+
+-----NESTED IF(https://academy.dqlab.id/main/livecode/45/111/532?pr=)-----
+
+i=2 
+if (i<7):
+	print("nilai i kurang dari 7")
+	if (i<3):
+		print("nilai i kurang dari 7 dan kurang dari 3")
+	else:
+		print("nilai i kurang dari 7 tapi lebih dari 3")
+______________________________________________________________________________________________________________________________
+
+-----Praktik Operasi Matematika(https://academy.dqlab.id/main/livecode/45/112/534?pr=)-----
+
+a=10
+b=5
+selisih = a-b
+jumlah = a+b
+kali = a*b
+bagi = a/b
+print("Hasil penjumlahan a dan b adalah", jumlah)
+print("Selisih a dan b adalah :",selisih)
+print("Hasil perkalian a dan b adalah :",kali)
+print("Hasil pembagian a dan b adalah :",bagi)
+______________________________________________________________________________________________________________________________
+
+-----Operasi modulus(https://academy.dqlab.id/main/livecode/45/112/536?pr=)-----
+
+c=10
+d=3
+
+modulus=c%d
+print("Hasil modulus",modulus)
+
+______________________________________________________________________________________________________________________________
+
+-----Tugas Mid Praktek(https://academy.dqlab.id/main/livecode/45/112/538?pr=)-----
+
+angka=5
+
+if(angka%2==0):
+    print("angka termasuk bilangan genap")
+else:
+    print("angka termasuk bilangan ganjil")
+
+______________________________________________________________________________________________________________________________
+
+-----while(https://academy.dqlab.id/main/livecode/45/113/540?pr=)-----
+
+#nilai awal j=0
+j=0
+
+#ketika j kurang dari 6 lakukan perulangan, jika tidak stop perulangan
+while j<6:
+	#lakukan perintah ini ketika perulangan
+	print("Ini adalah perulangan ke-",j)
+	#setiap kali diakhir perulangan update nilai dengan ditambah 1.
+	j=j+1
+______________________________________________________________________________________________________________________________
+
+-----for (1)(https://academy.dqlab.id/main/livecode/45/113/542?pr=)-----
+
+for i in range (1,6): #perulangan for sebagai inisisalisasi dari angka 1 hingga angka yang lebih kecil daripada 6.
+	print("Ini adalah perulangan ke-",i) #perintah jika looping akan tetap berjalan
+______________________________________________________________________________________________________________________________
+
+-----for (2) with access element(https://academy.dqlab.id/main/livecode/45/113/543?pr=)-----
+
+for i in range (1,11):
+	if(i%2==0):
+	   print("Angka genap",i)
+	else:
+	   print("Angka ganjil",i)
+______________________________________________________________________________________________________________________________
+
+-----Membuat fungsi sendiri(https://academy.dqlab.id/main/livecode/45/114/545?pr=)-----
+
+#Membuat Fungsi
+def salam():
+	print("Hello, Selamat Pagi")
+	
+## Pemanggilan
+salam()
+______________________________________________________________________________________________________________________________
+
+-----Parameter pada fungsi(https://academy.dqlab.id/main/livecode/45/114/546?pr=)-----
+
+def luas_segitiga(alas, tinggi): #alas dan tinggi merupakan parameter yang masuk
+	luas = (alas*tinggi)/2
+	print("Luas segitiga: %f" % luas);
+	
+#Pemanggilan fungsi
+##4 dan 6 merupakan parameter yang diinputkan kedalam fungsi luas segitiga
+luas_segitiga(4,6)
+______________________________________________________________________________________________________________________________
+
+-----Fungsi dengan Return Value(https://academy.dqlab.id/main/livecode/45/114/547?pr=0)-----
+
+def luas_segitiga(alas, tinggi): #alas dan tinggi merupakan parameter yang masuk
+	luas = (alas * tinggi)/2
+	return luas
+
+#Pemanggilan fungsi 
+##4 dan 6 merupakan parameter yang diinputkan kedalam fungsi luas segitiga
+print("Luas segitiga: %d" %luas_segitiga(4,6))
+______________________________________________________________________________________________________________________________
+
+-----Import Package dan Menggunakan modul(https://academy.dqlab.id/main/livecode/45/115/549?pr=)-----
+
+import math
+print("Nilai pi adalah:", math.pi) #math.pi merupakan sintak untuk memanggil fungsi pi
+______________________________________________________________________________________________________________________________
+
+-----Import dengan Module Rename atau Alias(https://academy.dqlab.id/main/livecode/45/115/550?pr=)-----
+
+import math as m #menggunakan m sebagai modul rename atau alias
+print("Nilai pi adalah:", m.pi) #m.pi merupakan sintak untuk memanggil fungsi
+
+______________________________________________________________________________________________________________________________
+
+-----Import Sebagian Fungsi(https://academy.dqlab.id/main/livecode/45/115/560?pr=)-----
+
+from math import pi
+print("Nilai pi adalah", pi)
+
+______________________________________________________________________________________________________________________________
+
+-----Import Semua isi Moduls(https://academy.dqlab.id/main/livecode/45/115/561?pr=)-----
+
+from math import *
+print("Nilai e adalah:",e)
+______________________________________________________________________________________________________________________________
+
+-----Membaca Teks File (CSV)(https://academy.dqlab.id/main/livecode/45/116/552?pr=)-----
+
+import requests
+from contextlib import closing
+import csv
+
+url = 'https://storage.googleapis.com/dqlab-dataset/penduduk_gender_head.csv'
+
+with closing(requests.get(url, stream=True)) as r:
+	f = (line.decode('utf-8') for line in r.iter_lines())
+	
+	reader = csv.reader(f, delimiter= ',')
+	
+	for row in reader:
+		
+		print(row)
+______________________________________________________________________________________________________________________________
+
+-----Membaca file CSV dengan menggunakan PANDAS(https://academy.dqlab.id/main/livecode/45/116/553?pr=)-----
+
+import pandas as pd
+pd.set_option("display.max_columns",50)
+
+table = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/penduduk_gender_head.csv")
+table.head()
+print(table)
+______________________________________________________________________________________________________________________________
+
+-----Bar Chart(https://academy.dqlab.id/main/livecode/45/117/555?pr=)-----
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+table = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/penduduk_gender_head.csv")
+table.head()
+x_label = table['NAMA KELURAHAN']
+plt.bar(x=np.arange(len(x_label)), height=table ['LAKI-LAKI WNI'])
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Parameter dalam Grafik (Memberikan Nilai Axis dari data CSV)(https://academy.dqlab.id/main/livecode/45/117/556?pr=)-----
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+table = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/penduduk_gender_head.csv")
+table.head()
+
+x_label = table['NAMA KELURAHAN']
+plt.bar(x=np.arange(len(x_label)),height=table['LAKI-LAKI WNI'])
+plt.xticks(np.arange(len(x_label)), table['NAMA KELURAHAN'], rotation=30)
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Menambah Title dan Label pada Grafik(https://academy.dqlab.id/main/livecode/45/117/557?pr=)-----
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+table = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/penduduk_gender_head.csv")
+table.head()
+
+x_label = table['NAMA KELURAHAN']
+plt.bar(x=np.arange(len(x_label)),height=table['LAKI-LAKI WNI'])
+plt.xticks(np.arange(len(x_label)), table ['NAMA KELURAHAN'], rotation=90)
+plt.xlabel('Kelurahan di Jakarta Pusat')
+plt.ylabel('Jumlah Penduduk Laki-Laki')
+plt.title('Persebaran Jumlah Penduduk Laki-Laki di Jakarta Pusat')
+
+plt.show()
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
