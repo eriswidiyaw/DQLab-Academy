@@ -1,0 +1,294 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+============================================Data Visualization using Plotnine=================================================
+______________________________________________________________________________________________________________________________
+
+-----Meng-import Package(https://academy.dqlab.id/main/livecode/295/565/2833?pr=0)-----
+
+import matplotlib.pyplot as plt
+import plotnine as p9
+import pandas as pd
+
+______________________________________________________________________________________________________________________________
+
+-----Membaca Data(https://academy.dqlab.id/main/livecode/295/565/2834?pr=0)-----
+
+import pandas as pd
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+df_inflasi = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/inflasi.csv')
+______________________________________________________________________________________________________________________________
+
+-----Menampilkan Data(https://academy.dqlab.id/main/livecode/295/566/2835?pr=)-----
+
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+print(df_penduduk.head())
+______________________________________________________________________________________________________________________________
+
+-----Menjalankan Fungsi ggplot(https://academy.dqlab.id/main/livecode/295/566/2836?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+ggplot(data=df_penduduk).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Menambahkan Variabel(https://academy.dqlab.id/main/livecode/295/566/2837?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+(ggplot(data= df_penduduk)
++ aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Mendefinisikan Objek Geometris(https://academy.dqlab.id/main/livecode/295/566/2838?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+(ggplot(data=df_penduduk)
++ aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
++ geom_col()
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat Horizontal Bar Chart(https://academy.dqlab.id/main/livecode/295/566/2839?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+(ggplot(data=df_penduduk)
++ aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
++ geom_col()
++ coord_flip()
+).draw()
+plt.tight_layout()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Menambah Judul dan Mengubah Label(https://academy.dqlab.id/main/livecode/295/566/2840?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import plotnine
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+plotnine.options.figure_size=(12, 4.8)
+(ggplot(data=df_penduduk)
++ aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
++ geom_col()
++ coord_flip()
++ labs(title='Jumlah penduduk per kabupaten/kota di DKI Jakarta(2013)',
+x='Kabupaten/Kota',
+y='Jumlah Penduduk')
+).draw()
+plt.tight_layout(rect=[0,0,1,0.9])
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Menampilkan Warna Berbeda(https://academy.dqlab.id/main/livecode/295/566/2841?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import plotnine
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+plotnine.options.figure_size=(10, 3.6)
+(ggplot(data=df_penduduk)
++ aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH', fill='Jenis Kelamin')
++ geom_col()
++ coord_flip()
++ labs(title='Jumlah penduduk per kabupaten/kota di DKI Jakarta (2013)',
+x='Kabupaten/Kota',
+y='Jumlah Penduduk')
+).draw()
+plt.tight_layout(rect=[0,0,1,0.9])
+plt.show()
+
+______________________________________________________________________________________________________________________________
+
+-----Membuat Grafik dengan Variabel Berbeda(https://academy.dqlab.id/main/livecode/295/566/2842?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import plotnine
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+plotnine.options.figure_size=(14, 3.6)
+(ggplot(data=df_penduduk[df_penduduk['NAMA KECAMATAN'] == 'CENGKARENG'])
++ aes(x='NAMA KELURAHAN', y='JUMLAH', fill='JENIS KELAMIN')
++ geom_col()
++ coord_flip()
++ labs(title='Jumlah penduduk per kelurahan di Kecamatan Cengkareng (2013)', 
+	  x='Kelurahan',
+	  y='Jumlah Penduduk')
+).draw()
+plt.tight_layout(rect=[0,0,1,0.9])
+plt.show()
+
+______________________________________________________________________________________________________________________________
+
+-----Memisahkan Grafik(https://academy.dqlab.id/main/livecode/295/566/2843?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import plotnine
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+plotnine.options.figure_size=(10, 3.6)
+(ggplot(data=df_penduduk[df_penduduk['NAMA KECAMATAN'] == 'CENGKARENG'])
++ aes(x='NAMA KELURAHAN', y='JUMLAH', fill='JENIS KELAMIN')
++ geom_col(position='position_dodge')
++ coord_flip()
++ labs(title='Jumlah penduduk per kelurahan di DKI Jakarta (2013)',
+x='Kelurahan',
+y='Jumlah Penduduk')
+).draw()
+plt.tight_layout(rect=[0,0,1,0.9])
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat Scatterplot(https://academy.dqlab.id/main/livecode/295/567/2846?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+df_penduduk_luas_jumlah = df_penduduk.groupby(['NAMA KELURAHAN', 'LUAS WILAYAH (KM2)'])[['JUMLAH']].agg('sum').reset_index()
+
+(ggplot(data=df_penduduk_luas_jumlah)
++ aes(y='LUAS WILAYAH (KM2)', x='JUMLAH')
++ geom_point()
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Memberi Warna pada Scatterplot(https://academy.dqlab.id/main/livecode/295/567/2847?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import plotnine
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+df_penduduk_luas_jumlah = df_penduduk.groupby(['NAMA KELURAHAN', 'LUAS WILAYAH (KM2)'])[['JUMLAH']].agg('sum').reset_index()
+
+plotnine.options.figure_size=(10, 3.6)
+(ggplot(data=df_penduduk_luas_jumlah)
++ aes(y='LUAS WILAYAH (KM2)', x='JUMLAH', color='JUMLAH')
++ geom_point()
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat Histogram(https://academy.dqlab.id/main/livecode/295/567/2848?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+(ggplot(data=df_penduduk)
++ aes(x='LUAS WILAYAH (KM2)')
++ geom_histogram()
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat Histogram 2(https://academy.dqlab.id/main/livecode/295/567/2849?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+(ggplot(data=df_penduduk)
++ aes(x='LUAS WILAYAH (KM2)', y='stat(count/max(count))')
++ geom_histogram()
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat Boxplot(https://academy.dqlab.id/main/livecode/295/567/2850?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_penduduk = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/datakependudukandki-dqlab.csv')
+
+(ggplot(data=df_penduduk)
++ aes(x='NAMA KABUPATEN/KOTA', y='JUMLAH')
++ geom_boxplot()
++ coord_flip()
+).draw()
+plt.tight_layout()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat Line Chart(https://academy.dqlab.id/main/livecode/295/567/2851?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_inflasi = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/inflasi.csv')
+
+df_inflasi['Bulan'] = pd.to_datetime(df_inflasi['Bulan'])
+(ggplot(data=df_inflasi[df_inflasi['Negara']== 'INDONESIA'])
++ aes(x='Bulan', y='Inflasi')
++ geom_line()
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+
+-----Membuat 2 Line Chart(https://academy.dqlab.id/main/livecode/295/567/2852?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import plotnine
+import pandas as pd 
+df_inflasi = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/inflasi.csv')
+df_inflasi['Bulan'] = df_inflasi['Bulan'].astype('datetime64')
+
+plotnine.options.figure_size=(12, 3.6)
+(ggplot(data=df_inflasi)
++ aes(x='Bulan', y='Inflasi', color='Negara')
++ geom_line()
+).draw()
+plt.show()
+
+______________________________________________________________________________________________________________________________
+
+-----Mengubah Ukuran Plot(https://academy.dqlab.id/main/livecode/295/567/2853?pr=)-----
+
+import matplotlib.pyplot as plt
+from plotnine import *
+import pandas as pd 
+df_inflasi = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/inflasi.csv')
+df_inflasi['Bulan'] = df_inflasi['Bulan'].astype('datetime64')
+
+(ggplot(data=df_inflasi)
++ aes(x='Bulan', y='Inflasi', color='Negara')
++ geom_line()
++ theme(figure_size=(10, 5))
+).draw()
+plt.show()
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
