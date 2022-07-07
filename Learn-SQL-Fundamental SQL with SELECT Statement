@@ -1,0 +1,76 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+========================================Fundamental SQL with SELECT Statement=================================================
+______________________________________________________________________________________________________________________________
+
+-----Perintah SELECT [2/2](https://academy.dqlab.id/main/livecode/91/213/1086?pr=)-----
+
+SELECT * FROM ms_produk;
+
+______________________________________________________________________________________________________________________________
+
+-----Mengambil Satu Kolom dari Table(https://academy.dqlab.id/main/livecode/91/214/1093?pr=)-----
+
+SELECT nama_produk FROM ms_produk;
+______________________________________________________________________________________________________________________________
+
+-----Membatasi Pengambilan Jumlah Row Data(https://academy.dqlab.id/main/livecode/91/214/1097?pr=)-----
+
+SELECT nama_produk FROM ms_produk LIMIT 3;
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan Prefix pada Nama Kolom(https://academy.dqlab.id/main/livecode/91/215/1100?pr=)-----
+
+SELECT ms_produk.kode_produk FROM ms_produk;
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan Alias pada Kolom(https://academy.dqlab.id/main/livecode/91/215/1102?pr=)-----
+
+SELECT no_urut AS nomor, nama_produk AS nama FROM ms_produk;
+______________________________________________________________________________________________________________________________
+
+-----Menghilangkan Keyword 'AS'(https://academy.dqlab.id/main/livecode/91/215/1104?pr=)-----
+
+SELECT no_urut nomor, nama_produk nama FROM ms_produk;
+______________________________________________________________________________________________________________________________
+
+-----Menggabungkan Prefix dan Alias(https://academy.dqlab.id/main/livecode/91/215/1106?pr=)-----
+
+SELECT ms_produk.harga AS harga_jual from ms_produk;
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan Alias pada Table(https://academy.dqlab.id/main/livecode/91/215/1107?pr=)-----
+
+SELECT * FROM ms_produk t2;
+______________________________________________________________________________________________________________________________
+
+-----Prefix dengan Alias Table(https://academy.dqlab.id/main/livecode/91/215/1108?pr=)-----
+
+SELECT t2.nama_produk, t2.harga FROM ms_produk t2;
+
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan WHERE(https://academy.dqlab.id/main/livecode/91/216/1111?pr=)-----
+
+SELECT * FROM ms_produk WHERE nama_produk = 'Tas Travel Organizer DQLab'
+
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan Operand OR(https://academy.dqlab.id/main/livecode/91/216/1112?pr=)-----
+
+SELECT * FROM ms_produk WHERE
+nama_produk = 'Gantungan Kunci DQLab' 
+OR nama_produk = 'Tas Travel Organizer DQLab'
+OR nama_produk = 'Flashdisk DQLab 64 GB'
+______________________________________________________________________________________________________________________________
+
+-----Filter untuk Angka(https://academy.dqlab.id/main/livecode/91/216/1113?pr=)-----
+
+SELECT * FROM ms_produk WHERE harga > 50000;
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan Operand AND(https://academy.dqlab.id/main/livecode/91/216/1114?pr=)-----
+
+SELECT * FROM ms_produk WHERE nama_produk = 'Gantungan Kunci DQLab' AND harga < 50000;
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
