@@ -1,0 +1,102 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+==========================================Fundamental SQL Group By and Having================================================
+______________________________________________________________________________________________________________________________
+
+-----Pengenalan Table - Customer(https://academy.dqlab.id/main/livecode/291/554/2776?pr=0)-----
+
+SELECT * FROM customer;
+______________________________________________________________________________________________________________________________
+
+-----Pengenalan Table - Product(https://academy.dqlab.id/main/livecode/291/554/2777?pr=0)-----
+
+SELECT * FROM product;
+______________________________________________________________________________________________________________________________
+
+-----Pengenalan Table - Subscription(https://academy.dqlab.id/main/livecode/291/554/2778?pr=0)-----
+
+SELECT * FROM subscription;
+______________________________________________________________________________________________________________________________
+
+-----Pengenalan Table - Invoice(https://academy.dqlab.id/main/livecode/291/554/2779?pr=0)-----
+
+SELECt * FROM Invoice;
+______________________________________________________________________________________________________________________________
+
+-----Pengenalan Table - Payment(https://academy.dqlab.id/main/livecode/291/554/2780?pr=0)-----
+
+SELECT * FROM payment;
+______________________________________________________________________________________________________________________________
+
+-----Contoh penggunaan HAVING(https://academy.dqlab.id/main/livecode/291/555/2782?pr=)-----
+
+SELECT
+	customer_id 
+FROM Subscription 
+GROUP BY customer_id 
+HAVING 
+     COUNT(customer_id) > 1;
+______________________________________________________________________________________________________________________________
+
+-----Menampilkan Konsumen yang berubah berlangganan(https://academy.dqlab.id/main/livecode/291/555/2783?pr=)-----
+
+SELECT 
+	customer_id,
+    product_id,
+    subscription_date
+FROM Subscription 
+WHERE customer_id IN 
+	(SELECT 
+    	customer_id 
+     FROM Subscription 
+     GROUP BY customer_id 
+     HAVING COUNT(customer_id) > 1
+  	) 
+ORDER BY customer_id ASC;
+______________________________________________________________________________________________________________________________
+
+-----Menampilkan detail konsumen(https://academy.dqlab.id/main/livecode/291/555/2784?pr=)-----
+
+SELECT b.name,
+	   b.address,
+       b.phone, 
+       a.product_id, 
+       a.subscription_date 
+FROM subscription a 
+JOIN customer b 
+ON a.customer_id = b.id
+WHERE b.id IN 
+(
+	SELECT 
+    	customer_id 
+        FROM Subscription 
+    GROUP BY customer_id 
+    HAVING COUNT(customer_id) > 1
+) 
+ORDER BY b.id ASC;
+
+______________________________________________________________________________________________________________________________
+
+-----Penggunaan Fungsi MAX pada Having(https://academy.dqlab.id/main/livecode/291/556/2786?pr=)-----
+
+SELECT product_id, MAX(total_price) AS total FROM invoice GROUP BY product_id;
+SELECT product_id, MAX(total_price) AS total FROM invoice GROUP BY product_id HAVING MAX(total_price) > 1000000;
+SELECT product_id, MAX(pinalty) AS total FROM invoice GROUP BY product_id HAVING MAX(pinalty) > 30000;
+
+______________________________________________________________________________________________________________________________
+
+-----Penggunaan Fungsi MIN pada Having(https://academy.dqlab.id/main/livecode/291/556/2787?pr=)-----
+
+SELECT product_id, MIN(total_price) AS total FROM invoice GROUP BY product_id;
+SELECT product_id, MIN(total_price) AS total FROM invoice GROUP BY product_id HAVING MIN(total_price) < 500000;
+SELECT product_id, MIN(total_price) AS total FROM invoice GROUP BY product_id HAVING MIN( pinalty) < 50000; 
+
+______________________________________________________________________________________________________________________________
+
+-----Penggunaan Fungsi AVG di Having(https://academy.dqlab.id/main/livecode/291/556/2788?pr=)-----
+
+SELECT product_id, AVG(total_price) AS total FROM invoice GROUP BY product_id;
+SELECT product_id, AVG(total_price) AS total FROM invoice GROUP BY product_id HAVING AVG(total_price) > 100000;
+SELECT product_id, AVG(pinalty) AS total FROM invoice GROUP BY product_id HAVING AVG(pinalty) >30000;
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
