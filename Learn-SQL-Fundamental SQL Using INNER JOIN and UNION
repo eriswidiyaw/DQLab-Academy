@@ -1,0 +1,129 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+========================================Fundamental SQL Using INNER JOIN and UNION============================================
+______________________________________________________________________________________________________________________________
+
+-----Tugas Praktek(https://academy.dqlab.id/main/livecode/244/406/2034?pr=0)-----
+
+SELECT * FROM ms_item_kategori;
+SELECT * FROM ms_item_warna;
+______________________________________________________________________________________________________________________________
+
+-----Menggabungkan Tabel dengan Key Columns(https://academy.dqlab.id/main/livecode/244/406/2038?pr=0)-----
+
+SELECT * FROM ms_item_kategori, ms_item_warna
+WHERE nama_barang = nama_item;
+______________________________________________________________________________________________________________________________
+
+-----Bagaimana jika urutan Tabel diubah?(https://academy.dqlab.id/main/livecode/244/406/2044?pr=0)-----
+
+SELECT * FROM ms_item_warna, ms_item_kategori
+WHERE nama_barang = nama_item;
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan Prefix Nama Tabel(https://academy.dqlab.id/main/livecode/244/406/2045?pr=0)-----
+
+SELECT ms_item_kategori.*, ms_item_warna.*
+FROM ms_item_warna, ms_item_kategori
+WHERE nama_barang = nama_item;
+______________________________________________________________________________________________________________________________
+
+-----Penggabungan Tanpa Kondisi(https://academy.dqlab.id/main/livecode/244/406/2046?pr=0)-----
+
+SELECT * FROM ms_item_kategori, ms_item_warna;
+______________________________________________________________________________________________________________________________
+
+-----Tugas Praktek: Menggunakan INNER JOIN (1/3)(https://academy.dqlab.id/main/livecode/244/407/2051?pr=)-----
+
+SELECT * FROM ms_item_warna
+INNER JOIN ms_item_kategori
+ON ms_item_warna.nama_barang = ms_item_kategori.nama_item;
+______________________________________________________________________________________________________________________________
+
+-----tabel tr_penjualan dan tabel ms_produk(https://academy.dqlab.id/main/livecode/244/407/2052?pr=)-----
+
+SELECT * FROM tr_penjualan;
+SELECT * FROM ms_produk;
+______________________________________________________________________________________________________________________________
+
+-----Tugas Praktek: Menggunakan INNER JOIN (2/3)(https://academy.dqlab.id/main/livecode/244/407/2054?pr=)-----
+
+SELECT * FROM tr_penjualan INNER JOIN ms_produk ON tr_penjualan.kode_produk = ms_produk.kode_produk;
+______________________________________________________________________________________________________________________________
+
+-----Tugas Praktek: Menggunakan INNER JOIN (3/3)(https://academy.dqlab.id/main/livecode/244/407/2057?pr=)-----
+
+SELECT tr_penjualan.kode_transaksi,
+	   tr_penjualan.kode_pelanggan,
+	   tr_penjualan.kode_produk,
+	   ms_produk.nama_produk,
+	   ms_produk.harga,
+	   tr_penjualan.qty,
+	   ms_produk.harga*tr_penjualan.qty AS total
+FROM tr_penjualan
+INNER JOIN ms_produk
+ON tr_penjualan.kode_produk= ms_produk.kode_produk;
+
+______________________________________________________________________________________________________________________________
+
+-----Tabel yang Akan Digabungkan(https://academy.dqlab.id/main/livecode/244/408/2061?pr=)-----
+
+SELECT * FROM tabel_a;
+SELECT * FROM tabel_b;
+
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan UNION(https://academy.dqlab.id/main/livecode/244/408/2062?pr=)-----
+
+SELECT * FROM tabel_A
+UNION
+SELECT * FROM tabel_B;
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan UNION dengan Klausa WHERE(https://academy.dqlab.id/main/livecode/244/408/2063?pr=)-----
+
+SELECT * FROM tabel_a
+WHERE kode_pelanggan = 'dqlabcust03'
+UNION
+SELECT * FROM tabel_b
+WHERE kode_pelanggan = 'dqlabcust03'
+______________________________________________________________________________________________________________________________
+
+-----Menggunakan UNION dan Menyelaraskan Kolom-Kolomnya.(https://academy.dqlab.id/main/livecode/244/408/2065?pr=)-----
+
+SELECT CustomerName, ContactName,City, PostalCode
+FROM Customers
+UNION
+SELECT SupplierName, ContactName, City, PostalCode
+FROM Suppliers;
+______________________________________________________________________________________________________________________________
+
+-----Project INNER JOIN(https://academy.dqlab.id/main/livecode/244/409/2070?pr=)-----
+
+SELECT 
+	DISTINCT ms_pelanggan.kode_pelanggan,
+	ms_pelanggan.nama_customer,
+	ms_pelanggan.alamat
+FROM
+	ms_pelanggan
+	INNER JOIN tr_penjualan ON ms_pelanggan.kode_pelanggan = tr_penjualan.kode_pelanggan
+WHERE tr_penjualan.nama_produk = 'Kotak Pensil DQLab'
+OR tr_penjualan.nama_produk = 'Flashdisk DQLab 32 GB'
+OR tr_penjualan.nama_produk = 'Sticky Notes DQLab 500 sheets';
+______________________________________________________________________________________________________________________________
+
+-----Project UNION(https://academy.dqlab.id/main/livecode/244/409/2071?pr=)-----
+
+SELECT nama_produk,
+	   kode_produk,
+	   harga
+FROM ms_produk_1
+WHERE harga <100000
+UNION 
+SELECT nama_produk,
+	   kode_produk,
+	   harga
+FROM ms_produk_2
+WHERE harga < 50000;
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
