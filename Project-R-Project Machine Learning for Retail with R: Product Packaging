@@ -1,0 +1,62 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+==============================Project Machine Learning for Retail with R: Product Packaging===================================
+______________________________________________________________________________________________________________________________
+
+-----Output Awal: Statistik Top 10(https://academy.dqlab.id/main/projectcode/16/109/517)-----
+
+library(arules)
+df <- read.transactions(file="transaksi_dqlab_retail.tsv", format="single", sep="\t", cols=c(1,2),skip=1)
+pp <-itemFrequency(df, type = "absolute")
+pp <- sort(pp, decreasing = TRUE)
+pp <- data.frame(Nama.Produk=names(pp), Jumlah=pp, row.names=NULL)
+top_10 <- head(pp, n=10)
+top_10
+write.csv(top_10, file="top10_item_retail.txt", sep=",")
+
+______________________________________________________________________________________________________________________________
+
+-----Output Awal: Statistik Bottom 10(https://academy.dqlab.id/main/projectcode/16/109/518)-----
+
+library(arules)
+transaksi <- "transaksi_dqlab_retail.tsv"
+transaksi_tabular <- read.transactions(file=transaksi, format="single", sep="\t", cols=c(1,2), skip=1)
+data_bottom <- sort(itemFrequency(transaksi_tabular, type="absolute"), decreasing=FALSE)[1:10]
+data_bottom <- data.frame("Nama Produk"=names(data_bottom), "Jumlah"=data_bottom, row.names=NULL)
+data_bottom
+write.csv(data_bottom, file="bottom10_item_retail.txt")
+______________________________________________________________________________________________________________________________
+
+-----Mendapatkan Kombinasi Produk yang menarik(https://academy.dqlab.id/main/projectcode/16/109/519)-----
+
+library(arules)
+nama_file <- "transaksi_dqlab_retail.tsv"
+transaksi_tabular <- read.transactions(file=nama_file, format="single", sep="\t", cols=c(1,2), skip=1)
+apriori_rules <- apriori(transaksi_tabular,
+						parameter=list(supp=10/length(transaksi_tabular), conf=0.5, minlen=2, maxlen=3))
+apriori_rules <- head(sort(apriori_rules, by='lift', decreasing = T), n=10)
+inspect(apriori_rules)
+write(apriori_rules, file="kombinasi_retail.txt")
+______________________________________________________________________________________________________________________________
+
+-----Mencari Paket Produk yang bisa dipasangkan dengan Item Slow-Moving(https://academy.dqlab.id/main/projectcode/16/109/520)-----
+
+library(arules)
+
+nama_files <- "transaksi_dqlab_retail.tsv"
+transaksi_tabular <- read.transactions(file=nama_file, format="single", sep="\t", cols=c(1,2), skip=1)
+jumlah_transaksi <- length(transaksi_tabular)
+jumlah_kemunculan_minimal <- 10
+apriori_rules <-apriori(
+transaksi_tabular,
+parameter =list(supp=jumlah_kemunculan_minimal/jumlah_transaksi,
+			   conf=0.1, minlen=2, maxlen=3))
+apriori_rules1 <- subset(apriori_rules, lift > 1 & rhs %in% "Tas Makeup")
+apriori_rules1 <- sort(apriori_rules1, by='lift', decreasing = T) [1:3]
+apriori_rules2 <- subset(apriori_rules, lift > 1 & rhs %in% "Baju Renang Pria Anak-anak")
+apriori_rules2 <- sort(apriori_rules2, by='lift', decreasing = T) [1:3]
+apriori_rules <- c(apriori_rules1, apriori_rules2)
+inspect(apriori_rules)
+write(apriori_rules, file="kombinasi_retail_slow_moving.txt")
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
