@@ -1,0 +1,492 @@
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
+
+==============================Project Machine Learning with Python: Building Recommender System===============================
+______________________________________________________________________________________________________________________________
+
+-----Import Library dan File Unloading(https://academy.dqlab.id/main/projectcode/212/378/1876?pr=)-----
+
+#import library yang dibutuhkan
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+#lakukan pembacaan dataset
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep = '\t') #untuk menyimpan title_basics.tsv
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep = '\t') #untuk menyimpan title.ratings.tsv
+
+______________________________________________________________________________________________________________________________
+
+-----5 Data teratas dari table movie(https://academy.dqlab.id/main/projectcode/212/379/1877?pr=)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+print(movie_df.head())
+______________________________________________________________________________________________________________________________
+
+-----Info Data dari Setiap Kolom(https://academy.dqlab.id/main/projectcode/212/379/1922)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+print(movie_df.info())
+#print(movie_df.head())
+______________________________________________________________________________________________________________________________
+
+-----Pengecekan Data dengan Nilai NULL(https://academy.dqlab.id/main/projectcode/212/379/1923)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+print(movie_df.isnull().sum())
+______________________________________________________________________________________________________________________________
+
+-----Membuang Data dengan Nilai NULL - part 1(https://academy.dqlab.id/main/projectcode/212/379/1932)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+#mengupdate movie_df dengan membuang data-data bernilai NULL
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+
+#menampilkan jumlah data setelah data dengan nilai NULL dibuang
+print(len(movie_df))
+______________________________________________________________________________________________________________________________
+
+-----Analisis Kolom dengan data bernilai NULL - part 2(https://academy.dqlab.id/main/projectcode/212/379/1933)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+
+print(movie_df.loc[movie_df['genres'].isnull()])
+______________________________________________________________________________________________________________________________
+
+-----Membuang Data dengan Nilai NULL - part 2(https://academy.dqlab.id/main/projectcode/212/379/1934)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+
+#mengupdate movie_df dengan membuang data-data bernilai NULL
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+
+#menampilkan jumlah data setelah data dengan nilai NULL dibuang
+print(len(movie_df))
+______________________________________________________________________________________________________________________________
+
+-----Mengubah Nilai '\\N'(https://academy.dqlab.id/main/projectcode/212/379/1935)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+
+#mengubah nilai '\\N' pada startYear menjadi np.nan dan cast kolomnya menjadi float64
+movie_df['startYear'] = movie_df['startYear']. replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear']. astype('float64')
+print(movie_df['startYear'].unique()[:5])
+
+#mengubah nilai '\\N' pada endYear menjadi np.nan dan cast kolomnya menjadi float64
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+print(movie_df['endYear'].unique()[:5])
+
+#mengubah nilai '\\N' pada runtimeMinutes menjadi np.nan dan cast kolomnya menjadi float64
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes']. astype('float64')
+print(movie_df['runtimeMinutes'].unique()[:5])
+______________________________________________________________________________________________________________________________
+
+-----Mengubah nilai genres menjadi list(https://academy.dqlab.id/main/projectcode/212/379/1936)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+    #ubah menjadi list apabila ada data pada kolom genre
+        return x.split(',')
+    else: 
+    #jika tidak ada data, ubah menjadi list kosong
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+______________________________________________________________________________________________________________________________
+
+-----Menampilkan 5 data teratas(https://academy.dqlab.id/main/projectcode/212/380/1937?pr=)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+print(rating_df.head())
+
+______________________________________________________________________________________________________________________________
+
+-----Menampilkan info data(https://academy.dqlab.id/main/projectcode/212/380/1938)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+print(rating_df.info())
+______________________________________________________________________________________________________________________________
+
+-----Inner Join table movie dan table rating(https://academy.dqlab.id/main/projectcode/212/381/1939?pr=)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+
+
+print(movie_rating_df.head())
+print(movie_rating_df.info())
+______________________________________________________________________________________________________________________________
+
+-----Memperkecil ukuran Table(https://academy.dqlab.id/main/projectcode/212/381/1940)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+movie_rating_df = movie_rating_df.dropna(subset=['startYear','runtimeMinutes'])
+
+#Untuk memastikan bahwa sudah tidak ada lagi nilai NULL
+print(movie_rating_df.info())
+______________________________________________________________________________________________________________________________
+
+-----Pertanyaan 1: Berapa nilai C?(https://academy.dqlab.id/main/projectcode/212/382/1941?pr=)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+movie_rating_df = movie_rating_df.dropna(subset=['startYear','runtimeMinutes'])
+
+C = movie_rating_df['averageRating'].mean()
+print(C)
+______________________________________________________________________________________________________________________________
+
+-----Pertanyaan 2: Berapa nilai m?(https://academy.dqlab.id/main/projectcode/212/382/1942)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+movie_rating_df = movie_rating_df.dropna(subset=['startYear','runtimeMinutes'])
+
+m = movie_rating_df['numVotes'].quantile(0.8)
+print(m)
+______________________________________________________________________________________________________________________________
+
+-----Pertanyaan 3: Bagaimana cara membuat fungsi weighted formula?(https://academy.dqlab.id/main/projectcode/212/382/1943)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+movie_rating_df = movie_rating_df.dropna(subset=['startYear','runtimeMinutes'])
+
+def imdb_weighted_rating(df, var=0.8):
+    v = df['numVotes']
+    R = df['averageRating']
+    C = df['averageRating'].mean()
+    m = df['numVotes'].quantile(var)
+    df['score'] = (v/(m+v))*R + (m/(m+v))*C #Rumus IMDb 
+    return df['score']
+    
+imdb_weighted_rating(movie_rating_df)
+
+#melakukan pengecekan dataframe
+print(movie_rating_df.head())
+______________________________________________________________________________________________________________________________
+
+-----Pertanyaan 4: Bagaimana cara membuat simple recommender system?(https://academy.dqlab.id/main/projectcode/212/382/1944)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+movie_rating_df = movie_rating_df.dropna(subset=['startYear','runtimeMinutes'])
+
+C = movie_rating_df['averageRating'].mean()
+m = movie_rating_df['numVotes'].quantile(0.8)
+
+def imdb_weighted_rating(df, var=0.8):
+    v = df['numVotes']
+    R = df['averageRating']
+    C = df['averageRating'].mean()
+    m = df['numVotes'].quantile(var)
+    df['score'] = (v/(m+v))*R + (m/(m+v))*C
+    return df['score']
+    
+imdb_weighted_rating(movie_rating_df)
+
+def simple_recommender(df, top=100):
+    df = df.loc[df['numVotes'] >= m]
+    df = df.sort_values(by='score',ascending=False) #urutkan dari nilai tertinggi ke terendah
+    
+    #Ambil data 100 teratas
+    df = df[:top]
+    return df
+    
+#Ambil data 25 teratas     
+print(simple_recommender(movie_rating_df, top=25))
+______________________________________________________________________________________________________________________________
+
+-----Pertanyaan 5: Bagaimana cara membuat simple recommender system dengan user preferences?(https://academy.dqlab.id/main/projectcode/212/382/1945)-----
+
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_columns', None)
+
+movie_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.basics.tsv', sep='\t')
+rating_df = pd.read_csv('https://storage.googleapis.com/dqlab-dataset/title.ratings.tsv', sep='\t')
+
+movie_df = movie_df.loc[(movie_df['primaryTitle'].notnull()) & (movie_df['originalTitle'].notnull())]
+movie_df = movie_df.loc[movie_df['genres'].notnull()]
+movie_df['startYear'] = movie_df['startYear'].replace('\\N', np.nan)
+movie_df['startYear'] = movie_df['startYear'].astype('float64')
+movie_df['endYear'] = movie_df['endYear'].replace('\\N', np.nan)
+movie_df['endYear'] = movie_df['endYear'].astype('float64')
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].replace('\\N', np.nan)
+movie_df['runtimeMinutes'] = movie_df['runtimeMinutes'].astype('float64')
+
+def transform_to_list(x):
+    if ',' in x: 
+        return x.split(',')
+    else: 
+        return []
+
+movie_df['genres'] = movie_df['genres'].apply(lambda x: transform_to_list(x))
+
+movie_rating_df = pd.merge(movie_df, rating_df, on='tconst', how='inner')
+movie_rating_df = movie_rating_df.dropna(subset=['startYear','runtimeMinutes'])
+
+C = movie_rating_df['averageRating'].mean()
+m = movie_rating_df['numVotes'].quantile(0.8)
+
+def imdb_weighted_rating(df, var=0.8):
+    v = df['numVotes']
+    R = df['averageRating']
+    C = df['averageRating'].mean()
+    m = df['numVotes'].quantile(var)
+    df['score'] = (v/(m+v))*R + (m/(m+v))*C
+    return df['score']
+    
+imdb_weighted_rating(movie_rating_df)
+
+def simple_recommender(df, top=100):
+    df = df.loc[df['numVotes'] >= m]
+    df = df.sort_values(by='score', ascending=False)
+    
+    #jika kamu hanya ingin mengambil 100 teratas
+    df = df[:top]
+    return df
+
+df = movie_rating_df.copy()
+
+def user_prefer_recommender(df, ask_adult, ask_start_year, ask_genre, top=100):
+    #ask_adult = yes/no
+    if ask_adult.lower() == 'yes':
+        df = df.loc[df['isAdult'] == 1]
+    elif ask_adult.lower() == 'no':
+        df = df.loc[df['isAdult'] == 0]
+
+    #ask_start_year = numeric
+    df = df.loc[df['startYear'] >= int(ask_start_year)]
+
+    #ask_genre = 'all' atau yang lain
+    if ask_genre.lower() == 'all':
+        df = df
+    else:
+        def filter_genre(x):
+            if ask_genre.lower() in str(x).lower():
+                return True
+            else:
+                return False
+        df = df.loc[df['genres'].apply(lambda x: filter_genre(x))]
+
+    df = df.loc[df['numVotes'] >= m]  #Mengambil film dengan numVotes yang lebih besar atau sama dengan nilai m 
+    df = df.sort_values(by='score', ascending=False)
+    
+    #jika kamu hanya ingin mengambil 100 teratas
+    df = df[:top]
+    return df
+
+print(user_prefer_recommender(df,
+                       ask_adult = 'no',
+                        ask_start_year = 2000,
+                       ask_genre = 'drama'
+                       ))
+______________________________________________________________________________________________________________________________
+اَلْحَمْدُ لِلهِ رَبِّ اْلعَالَمِيْ
